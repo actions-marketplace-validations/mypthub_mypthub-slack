@@ -20,7 +20,7 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
-  token:  # id of input
+  slack-token:  # id of input
     description: 'Slack Bot OAUTH Token'
     required: true
 outputs:
