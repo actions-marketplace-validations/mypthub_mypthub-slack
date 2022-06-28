@@ -66,30 +66,39 @@ const defaultMsg = {
 	]
 }
 
-try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+async function publishMessage() {
+	try {
+		// `who-to-greet` input defined in action metadata file
+		const nameToGreet = core.getInput('who-to-greet');
+		console.log(`Hello ${nameToGreet}!`);
+		const time = (new Date()).toTimeString();
+		core.setOutput("time", time);
+		// Get the JSON webhook payload for the event that triggered the workflow
+		const payload = JSON.stringify(github.context.payload, undefined, 2)
+		console.log(`The event payload: ${payload}`);
 
-  // Call the chat.postMessage method using the built-in WebClient
-  const result = await app.client.chat.postMessage({
-    // The token you used to initialize your app
-    token: OAUTH_TOKEN,
-    channel: '#gh-deploy',
-    attachments: defaultMsg.attachments,
-    username: "gh-mpth-bot",
-    icon_emoji: ":ghost:",
-    // You could also use a blocks[] array to send richer content
-  });
+	} catch (error) {
+		core.setFailed(error.message);
+	}
 
-  // Print result, which includes information about the message (like TS)
-  console.log(result);
+  try {
+		// Call the chat.postMessage method using the built-in WebClient
+		const result = await app.client.chat.postMessage({
+			// The token you used to initialize your app
+			token: OAUTH_TOKEN,
+			channel: '#gh-deploy',
+			attachments: defaultMsg.attachments,
+			username: "gh-mpth-bot",
+			icon_emoji: ":ghost:",
+			// You could also use a blocks[] array to send richer content
+		});
 
-} catch (error) {
-  core.setFailed(error.message);
+    // Print result, which includes information about the message (like TS)
+    console.log('msg', result);
+  }
+  catch (error) {
+    console.error(error);
+  }
 }
+
+publishMessage();
