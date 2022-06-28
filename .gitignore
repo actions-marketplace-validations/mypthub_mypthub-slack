@@ -1,0 +1,3 @@
+.DS_Store
+# github actions needs node_modules checked in!
+# node_modules
