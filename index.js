@@ -8,7 +8,7 @@ const OAUTH_TOKEN = core.getInput('slack-token');
 
 // WebClient instantiates a client that can call API methods
 // When using Bolt, you can use either `app.client` or the `client` passed to listeners.
-const client = new WebClient(OAUTH_TOKEN, {
+const app = new WebClient(OAUTH_TOKEN, {
   // LogLevel can be imported and used to make debugging simpler
   logLevel: LogLevel.DEBUG
 });
@@ -83,7 +83,7 @@ async function publishMessage() {
 
   try {
 		// Call the chat.postMessage method using the built-in WebClient
-		const result = await app.client.chat.postMessage({
+		const result = await app.chat.postMessage({
 			// The token you used to initialize your app
 			token: OAUTH_TOKEN,
 			channel: '#gh-deploy',
