@@ -1,3 +1,18 @@
+# Example leaving here for now
+# name: 'My PT Hub Hello World'
+# description: 'Greet someone and record the time'
+# inputs:
+#   who-to-greet:  # id of input
+#     description: 'Who to greet'
+#     required: true
+#     default: 'World'
+# outputs:
+#   time: # id of output
+#     description: 'The time we greeted you'
+# runs:
+#   using: 'node16'
+#   main: 'index.js'
+
 name: 'My PT Hub Hello World'
 description: 'Greet someone and record the time'
 inputs:
@@ -5,6 +20,9 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  token:  # id of input
+    description: 'Slack Bot OAUTH Token'
+    required: true
 outputs:
   time: # id of output
     description: 'The time we greeted you'
