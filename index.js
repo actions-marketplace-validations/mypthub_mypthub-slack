@@ -1,9 +1,13 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+// const core = require('@actions/core');
+// const github = require('@actions/github');
+import core from '@actions/core';
+import github from '@actions/github';
 
 // Require the Node Slack SDK package (github.com/slackapi/node-slack-sdk)
-const { WebClient, LogLevel } = require("@slack/web-api");
-const { default: resolveMessage } = require('./resolveMessage');
+// const { WebClient, LogLevel } = require("@slack/web-api");
+// const { default: resolveMessage } = require('./resolveMessage');
+import { WebClient, LogLevel } from '@slack/web-api';
+import resolveMessage from  './resolveMessage';
 
 const OAUTH_TOKEN = core.getInput('slack-token');
 
