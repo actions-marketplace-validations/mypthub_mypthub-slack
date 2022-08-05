@@ -14,59 +14,6 @@ const app = new WebClient(OAUTH_TOKEN, {
   logLevel: LogLevel.DEBUG
 });
 
-const defaultMsg = {
-	// "channel": "#gh-deploy",
-	"attachments": [
-		{
-			"color": "#8AB4F8",
-			"blocks": [
-				{
-					"type": "context",
-					"elements": [
-						{
-							"type": "image",
-							"image_url": "https://slack-imgs.com/?c=1&o1=wi32.he32.si&url=https://avatars.githubusercontent.com/u/9919?v&#x3D;4",
-							"alt_text": "github logo"
-						},
-						{
-							"type": "mrkdwn",
-							"text": "*Mark* triggered a deploy"
-						}
-					]
-				},
-				{
-					"type": "divider"
-				},
-				{
-					"type": "section",
-					"fields": [
-						{
-							"type": "plain_text",
-							"text": "Branch",
-							"emoji": true
-						},
-						{
-							"type": "plain_text",
-							"text": "Project",
-							"emoji": true
-						},
-						{
-							"type": "plain_text",
-							"text": "Branch",
-							"emoji": true
-						},
-						{
-							"type": "plain_text",
-							"text": "*this is plain_text HAS BEEN UPDATE AGAIND*",
-							"emoji": true
-						}
-					]
-				}
-			]
-		}
-	]
-}
-
 async function publishMessage() {
 	try {
 		// `who-to-greet` input defined in action metadata file
