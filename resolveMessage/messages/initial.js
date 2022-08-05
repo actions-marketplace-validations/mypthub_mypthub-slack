@@ -3,7 +3,7 @@
  * @param {*} githubContext
  * @returns
  */
-export default function(githubContext) {
+export default function initial(githubContext) {
 	return {
 		"attachments": [
 			{
