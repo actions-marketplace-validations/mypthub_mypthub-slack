@@ -12,6 +12,6 @@ const variants = {
   },
 }
 
-export default function (githubContext, msgVariant) {
+export default function resolveMessage(githubContext, msgVariant) {
   return variants[msgVariant].message(githubContext);
 }
