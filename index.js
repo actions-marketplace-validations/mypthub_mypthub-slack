@@ -19,8 +19,8 @@ const app = new WebClient(OAUTH_TOKEN, {
 });
 
 async function publishMessage() {
-	const context = null;
-	const msgVariant = 'initial';
+	let context = null;
+	let msgVariant = 'initial';
 
 	try {
 		// `who-to-greet` input defined in action metadata file
