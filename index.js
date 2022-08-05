@@ -3,6 +3,7 @@ const github = require('@actions/github');
 
 // Require the Node Slack SDK package (github.com/slackapi/node-slack-sdk)
 const { WebClient, LogLevel } = require("@slack/web-api");
+const { default: resolveMessage } = require('./resolveMessage');
 
 const OAUTH_TOKEN = core.getInput('slack-token');
 
@@ -69,35 +70,34 @@ const defaultMsg = {
 async function publishMessage() {
 	try {
 		// `who-to-greet` input defined in action metadata file
-		const nameToGreet = core.getInput('who-to-greet');
-		console.log(`Hello ${nameToGreet}!`);
-		const time = (new Date()).toTimeString();
-		core.setOutput("time", time);
+		// const nameToGreet = core.getInput('who-to-greet');
+		// const time = (new Date()).toTimeString();
+		// core.setOutput("time", time);
 		// Get the JSON webhook payload for the event that triggered the workflow
-		const payload = JSON.stringify(github.context.payload, undefined, 2)
-		console.log(`The event payload: ${payload}`);
+		const payload = JSON.stringify(github.context, undefined, 2)
+		console.log(`The github action: ${payload}`);
 
+		const context = github.context.payload;
+		// const msgVariant = core.getInput('variant');
+		const msgVariant = 'initial';
 	} catch (error) {
 		core.setFailed(error.message);
 	}
 
   try {
-		// Call the chat.postMessage method using the built-in WebClient
 		const result = await app.chat.postMessage({
-			// The token you used to initialize your app
 			token: OAUTH_TOKEN,
 			channel: '#gh-deploy',
-			attachments: defaultMsg.attachments,
+			attachments: resolveMessage(context, msgVariant).attachments,
 			username: "gh-mpth-bot",
-			icon_emoji: ":ghost:",
+			// attachments: defaultMsg.attachments,
 			// You could also use a blocks[] array to send richer content
 		});
-
-    // Print result, which includes information about the message (like TS)
-    console.log('msg', result);
+    // console.log('msg', result);
+		core.setOutput("msg", result);
   }
   catch (error) {
-    console.error(error);
+    console.error('error sending msg', error);
   }
 }
 
