@@ -1,4 +1,4 @@
-import initial from "./messages/initial"
+import initial from "./messages/initial.js"
 
 const variants = {
   initial: {
