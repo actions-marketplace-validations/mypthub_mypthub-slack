@@ -7,7 +7,7 @@ import github from '@actions/github';
 // const { WebClient, LogLevel } = require("@slack/web-api");
 // const { default: resolveMessage } = require('./resolveMessage');
 import { WebClient, LogLevel } from '@slack/web-api';
-import resolveMessage from  './resolveMessage';
+import resolveMessage from  './resolveMessage/index.js';
 
 const OAUTH_TOKEN = core.getInput('slack-token');
 
