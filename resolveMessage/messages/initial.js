@@ -14,7 +14,7 @@ export default function initial(githubContext) {
 						"elements": [
 							{
 								"type": "mrkdwn",
-								"text": `*${githubContext.sender.login}* triggered a deploy`,
+								"text": `*${githubContext.actor}* triggered a deploy`,
 							}
 						]
 					},
@@ -36,7 +36,7 @@ export default function initial(githubContext) {
 						"fields": [
 							{
 								"type": "mrkdwn",
-								"text": "*Environment*"
+								"text": "*Workflow*"
 							},
 							{
 								"type": "mrkdwn",
@@ -44,12 +44,11 @@ export default function initial(githubContext) {
 							},
 							{
 								"type": "mrkdwn",
-								"text": "staging"
+								"text": `${githubContext.workflow}`
 							},
 							{
 								"type": "mrkdwn",
-								"text": `<> `
-								// "text": "<http://someurl|web>"
+								"text": `<${githubContext.payload.repository.clone_url}|${githubContext.payload.repository.name}>`,
 							},
 							{
 								"type": "mrkdwn",
@@ -61,11 +60,11 @@ export default function initial(githubContext) {
 							},
 							{
 								"type": "mrkdwn",
-								"text": "release/ekans"
+								"text": `${githubContext.ref.split('/').pop()}`
 							},
 							{
 								"type": "mrkdwn",
-								"text": `<${githubContext.head_commit.url}> ${githubContext.head_commit.id}`,
+								"text": `<${githubContext.head_commit.url}|${githubContext.head_commit.id.slice(6)}>`,
 							}
 						]
 					},

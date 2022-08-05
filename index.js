@@ -41,7 +41,7 @@ async function publishMessage() {
 		const result = await app.chat.postMessage({
 			token: OAUTH_TOKEN,
 			channel: '#gh-deploy',
-			attachments: resolveMessage(context.payload, msgVariant).attachments,
+			attachments: resolveMessage(context, msgVariant).attachments,
 			username: "gh-mpth-bot",
 			// attachments: defaultMsg.attachments,
 			// You could also use a blocks[] array to send richer content
