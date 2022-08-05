@@ -29,8 +29,9 @@ async function publishMessage() {
 		// core.setOutput("time", time);
 		// Get the JSON webhook payload for the event that triggered the workflow
 		// payload = JSON.stringify(github.context, undefined, 2)
-		console.log(`The github action: ${JSON.stringify(github.context, undefined, 2)}`);
 		context = github.context;
+		console.log(`The github context: ${JSON.stringify(context, undefined, 2)}`);
+		console.log(`The github action: ${JSON.stringify(context.payload, undefined, 2)}`);
 		// const msgVariant = core.getInput('variant');
 	} catch (error) {
 		core.setFailed(error.message);
