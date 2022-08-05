@@ -19,18 +19,19 @@ const app = new WebClient(OAUTH_TOKEN, {
 });
 
 async function publishMessage() {
+	const context = null;
+	const msgVariant = 'initial';
+
 	try {
 		// `who-to-greet` input defined in action metadata file
 		// const nameToGreet = core.getInput('who-to-greet');
 		// const time = (new Date()).toTimeString();
 		// core.setOutput("time", time);
 		// Get the JSON webhook payload for the event that triggered the workflow
-		const payload = JSON.stringify(github.context, undefined, 2)
-		console.log(`The github action: ${payload}`);
-
-		const context = github.context.payload;
+		// payload = JSON.stringify(github.context, undefined, 2)
+		console.log(`The github action: ${JSON.stringify(github.context, undefined, 2)}`);
+		context = github.context;
 		// const msgVariant = core.getInput('variant');
-		const msgVariant = 'initial';
 	} catch (error) {
 		core.setFailed(error.message);
 	}
@@ -39,7 +40,7 @@ async function publishMessage() {
 		const result = await app.chat.postMessage({
 			token: OAUTH_TOKEN,
 			channel: '#gh-deploy',
-			attachments: resolveMessage(context, msgVariant).attachments,
+			attachments: resolveMessage(context.payload, msgVariant).attachments,
 			username: "gh-mpth-bot",
 			// attachments: defaultMsg.attachments,
 			// You could also use a blocks[] array to send richer content
