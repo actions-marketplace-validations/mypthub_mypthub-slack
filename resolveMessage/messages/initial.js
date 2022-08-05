@@ -40,7 +40,7 @@ export default function initial(githubContext) {
 							},
 							{
 								"type": "mrkdwn",
-								"text": "*Repo / Actions*"
+								"text": "*Repo -> Actions*"
 							},
 							{
 								"type": "mrkdwn",
@@ -48,7 +48,7 @@ export default function initial(githubContext) {
 							},
 							{
 								"type": "mrkdwn",
-								"text": `<${githubContext.payload.repository.clone_url}/actions|${githubContext.payload.repository.name}/actions>`,
+								"text": `<${githubContext.payload.repository.html_url}/actions|${githubContext.payload.repository.name}>`,
 							},
 							{
 								"type": "mrkdwn",
