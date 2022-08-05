@@ -64,7 +64,7 @@ export default function initial(githubContext) {
 							},
 							{
 								"type": "mrkdwn",
-								"text": `<${githubContext.head_commit.url}|${githubContext.head_commit.id.slice(6)}>`,
+								"text": `<${githubContext.payload.head_commit.url}|${githubContext.payload.head_commit.id.slice(6)}>`,
 							}
 						]
 					},
