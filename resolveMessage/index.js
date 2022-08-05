@@ -1,4 +1,4 @@
-const initial = require('./messages/initial');
+import initial from "./messages/initial"
 
 const variants = {
   initial: {
